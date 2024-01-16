@@ -9,7 +9,7 @@ VS Code, Node, Git, NPM, Vite and TypeScript.
 - Plugins
   Prettier, ESLint
 
-- React Snippets
+- React Snippets: 
   https://marketplace.visualstudio.com/items?itemName=dsznajder.es7-react-js-snippets
 
 - Settings.json (used in the course)
