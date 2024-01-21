@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Children } from 'react'
 
 type ButtonProps = {
   size?: string;
@@ -8,7 +8,7 @@ type ButtonProps = {
 
 const Button = (props: ButtonProps) => {
   return (
-    <button onClick={props.onClick} style={{ fontSize: props.size }}>Increment</button>
+    <button onClick={props.onClick} style={{ fontSize: props.size }}>{props.children}</button>
   )
 }
 
