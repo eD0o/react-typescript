@@ -21,8 +21,6 @@ let result = add(3, 7); // result is inferred as type number
 
 But `just the inference won't be enough`. Thus, in this first scenario, it'll be `necessary to type the props that a components receive`.
 
----
-
 <details>
 <summary>Simple Example Declaring Props</summary>
 
@@ -151,5 +149,3 @@ export default Button;
 ```
 
 </details>
-
----
