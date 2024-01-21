@@ -2,9 +2,9 @@
 
 ## 2.1 - Inference
 
-Inference refers to the compiler **automatically determining the type of a variable or expression**. This happens without explicitly specifying the type, making the code more concise.
+Inference refers to the compiler `automatically determining the type of a variable or expression`. This happens without explicitly specifying the type, making the code more concise.
 
-**TypeScript's static type system allows for type inference**, making it possible to write code that is **both concise and statically typed**. But explicit type annotations are still useful in certain situations.
+`TypeScript's static type system allows for type inference`, making it possible to write code that is `both concise and statically typed`. But explicit type annotations are still useful in certain situations.
 
 ```ts
 let x = 5; // x is inferred as type number
@@ -16,10 +16,11 @@ function add(a: number, b: number) {
 
 let result = add(3, 7); // result is inferred as type number
 ```
+---
 
 ## 2.2 - Props
 
-But **just the inference won't be enough**. Thus, in this first scenario, it'll be **necessary to type the props that a components receive**.
+But `just the inference won't be enough`. Thus, in this first scenario, it'll be `necessary to type the props that a components receive`.
 
 <details>
 <summary>Simple Example Declaring Props</summary>
@@ -58,7 +59,3 @@ export default Button;
 ```
 
 </details>
-
----
-
-`Highlight Text`
