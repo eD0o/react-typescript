@@ -21,6 +21,8 @@ let result = add(3, 7); // result is inferred as type number
 
 But `just the inference won't be enough`. Thus, in this first scenario, it'll be `necessary to type the props that a components receive`.
 
+---
+
 <details>
 <summary>Simple Example Declaring Props</summary>
 
@@ -85,8 +87,8 @@ import React from "react";
 //React.PropsWithChildren is a type that automatically includes 'children: React.ReactNode' in its structure
 type ButtonPropsSecondExample = React.PropsWithChildren<{
   size?: string;
-  onClick?: () => void
-}>
+  onClick?: () => void;
+}>;
 
 const Button = (props: ButtonPropsSecondExample) => {
   return (
@@ -98,6 +100,8 @@ const Button = (props: ButtonPropsSecondExample) => {
 
 export default Button;
 ```
+
+</details>
 
 ---
 
@@ -121,9 +125,9 @@ return (
 import React from "react";
 
 //React.ComponentProps will extract the props of a component (in this case <button>) and automatically including children if necessary
-type ButtonPropsThirdExample = React.ComponentProps<'button'> & {
+type ButtonPropsThirdExample = React.ComponentProps<"button"> & {
   size?: string;
-}
+};
 
 //It's also common to destructure the props to use what is actually necessary
 // const Button = ({ size, children, onClick, className }: ButtonPropsThirdExample) => {
@@ -134,15 +138,18 @@ type ButtonPropsThirdExample = React.ComponentProps<'button'> & {
 
 //Besides that, it's possible to use the rest operator to reduce the amount of destructuring
 const Button = ({ size, children, ...props }: ButtonPropsThirdExample) => {
-  
   console.log(props); // output -> {className: 'btn', onClick: ƒ}
-  
+
   return (
-    <button {...props} style={{ fontSize: size }}>{children}</button>
-  )
-}
+    <button {...props} style={{ fontSize: size }}>
+      {children}
+    </button>
+  );
+};
 
 export default Button;
 ```
 
 </details>
+
+---
