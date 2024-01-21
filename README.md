@@ -16,3 +16,6 @@ function add(a: number, b: number) {
 
 let result = add(3, 7); // result is inferred as type number
 ```
+## 2.2 - Props
+
+But **just the inference won't be enough**. Thus, in this first scenario, it'll be **necessary to type the props that a components receive**.
