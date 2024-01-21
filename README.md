@@ -6,7 +6,7 @@ Inference refers to the compiler **automatically determining the type of a varia
 
 **TypeScript's static type system allows for type inference**, making it possible to write code that is **both concise and statically typed**. But explicit type annotations are still useful in certain situations.
 
-```typescript
+```ts
 let x = 5; // x is inferred as type number
 let y = "Hello, TypeScript!"; // y is inferred as type string
 
@@ -21,11 +21,10 @@ let result = add(3, 7); // result is inferred as type number
 
 But **just the inference won't be enough**. Thus, in this first scenario, it'll be **necessary to type the props that a components receive**.
 
-### 2.2.1 - Simple Example Declaring Props
 <details>
 <summary>Simple Example Declaring Props</summary>
 
-```typescript
+```ts
 //App.tsx
 return (
   <>
@@ -37,7 +36,7 @@ return (
 );
 ```
 
-```typescript
+```ts
 //Button.tsx
 import React from "react";
 
@@ -57,4 +56,5 @@ const Button = (props: ButtonProps) => {
 
 export default Button;
 ```
+
 </details>
