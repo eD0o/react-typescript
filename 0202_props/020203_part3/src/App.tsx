@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
-import Button from './Button';
+import Input from './Input';
 
 function App() {
 
-  const [total, setTotal] = useState(0)
-
-  const increment = () => {
-    setTotal((total) => total + 1)
-  }
+  const [data, setData] = useState('')
 
   return (
     <>
-      <p>Total: {total}</p>
-      <Button className='btn' onClick={increment} size="1.5rem">Increment</Button>
+      <p>Travelling Start: {data}</p>
+      <Input label="Email" id="email" marginBottom="1rem" type="email" />
+      <Input label="Name" id="name" marginBottom="1rem" />
+      <Input value={data} onChange={(event) => setData(event.currentTarget.value)} label="Check-in" id="checkin" marginBottom="1rem" type="date" />
+      <Input label="Check-out" id="checkout" marginBottom="1rem" type="time" />
     </>
   )
 }
