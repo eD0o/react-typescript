@@ -16,6 +16,45 @@ function add(a: number, b: number) {
 
 let result = add(3, 7); // result is inferred as type number
 ```
+
 ## 2.2 - Props
 
 But **just the inference won't be enough**. Thus, in this first scenario, it'll be **necessary to type the props that a components receive**.
+
+### 2.2.1 - Simple Example Declaring Props
+<details>
+<summary>Simple Example Declaring Props</summary>
+
+```typescript
+//App.tsx
+return (
+  <>
+    <p>Total: {total}</p>
+    <Button onClick={increment} size="1.5rem">
+      Increment
+    </Button>
+  </>
+);
+```
+
+```typescript
+//Button.tsx
+import React from "react";
+
+type ButtonProps = {
+  size?: string;
+  children: React.ReactNode;
+  onClick?: () => void;
+};
+
+const Button = (props: ButtonProps) => {
+  return (
+    <button onClick={props.onClick} style={{ fontSize: props.size }}>
+      Increment
+    </button>
+  );
+};
+
+export default Button;
+```
+</details>
