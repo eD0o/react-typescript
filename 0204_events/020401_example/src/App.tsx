@@ -1,11 +1,11 @@
 import React from 'react';
-import Button from './Button';
+import Checkbox from './Checkbox'
 
 function App() {
 
   return (
     <>
-    <Button>Increment</Button>
+      <Checkbox label="Terms and Conditions" />
     </>
   )
 }
