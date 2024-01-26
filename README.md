@@ -222,5 +222,3 @@ export default Button;
 Many times when you don't know some type, as it's possible to see in the image below, `VSCode helps to show what type is some variable or function`.
 
 ![](https://i.imgur.com/HG2OsJD.png)
-
-![](https://i.imgur.com/1QgDhMe.png)
