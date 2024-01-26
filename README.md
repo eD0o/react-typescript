@@ -149,3 +149,70 @@ export default Button;
 ```
 
 </details>
+
+## 2.3 - Interfaces and Types
+
+### 2.3.1 - Declarations
+
+React interfaces with TypeScript `are also available directly in the React object` imported from React.
+
+```ts
+import React from "react";
+//
+const Button = ({ children }: React.PropsWithChildren) => {
+  return <button>{children}</button>;
+};
+
+export default Button;
+```
+
+### 2.3.2 - JSX.Element
+
+`Element returned` by the component. It can also be: React.ReactElement and React.JSX.Element. `There's need to declare, as React already infers` the same.
+
+<details>
+<summary>JSX.Element and Mouse Event Example</summary>
+
+```ts
+//App.tsx
+import React from "react";
+import Button from "./Button";
+
+function App() {
+  return (
+    <>
+      <Button>Increment</Button>
+    </>
+  );
+}
+
+export default App;
+```
+
+```ts
+//Button.tsx
+import React from "react";
+
+/*
+after the paranthesis, it's the function return
+in this case, it's actually not necessary to explicit what'll be returned because typescript will infer it
+always declare the correct type of the event, for example here it wasn't just MouseEvent, but React.MouseEvent
+an onClick event in React is a React event and not a native JavaScript event
+*/
+const Button = ({ children }: React.PropsWithChildren): JSX.Element => {
+  // const handleClick = (event: React.MouseEvent) => {
+  //   console.log(event.pageX);
+  // }
+
+  // when the function has the type React.MouseEventHandler, it's not necessary to declare the event type React.MouseEvent
+  const handleClick: React.MouseEventHandler = (event) => {
+    console.log(event.pageX);
+  };
+
+  return <button onClick={handleClick}>{children}</button>;
+};
+
+export default Button;
+```
+
+</details>
