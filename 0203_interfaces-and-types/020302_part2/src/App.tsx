@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from './Button';
 
 function App() {
 
+  const [total, setTotal] = useState(0)
+
   return (
     <>
-    <Button>Increment</Button>
+      <p>Total: {total}</p>
+      <Button total={total} setTotal={setTotal} />
     </>
   )
 }
