@@ -222,3 +222,107 @@ export default Button;
 Many times when you don't know some type, as it's possible to see in the image below, `VSCode helps to show what type is some variable or function`.
 
 ![](https://i.imgur.com/HG2OsJD.png)
+
+## 2.4 - Events
+
+### 2.4.1 - EventHandler
+
+It is possible to `define the element on which the EventHandler will be used`. This way the currentTarget will be defined correctly.
+
+<details>
+<summary>EventHandler</summary>
+
+```ts
+// App.tsx
+import React from 'react';
+import Checkbox from './Checkbox'
+
+function App() {
+
+  return (
+    <>
+      <Checkbox label="Terms and Conditions" />
+    </>
+  )
+}
+
+export default App
+```
+
+```ts
+// Checkbox.tsx
+import React, { useState } from 'react'
+
+const Checkbox = ({ label }: { label: string }) => {
+
+  const [value, setValue] = useState(false)
+
+  //to know this type, just hover the onChange parameter to know what to type about the function
+  const handleChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
+    setValue(event.currentTarget.checked)
+  }
+
+  return (
+    <label htmlFor="" style={{
+      borderBottom: value ? "2px solid green" :  "2px solid red"
+    }}>
+      <input type="checkbox" checked={value} onChange={handleChange} />
+      {label}
+    </label>
+  )
+}
+
+export default Checkbox
+```
+
+</details>
+
+### 2.4.2 - Anonymous Function
+
+When defined an anonymous function directly in the event, `TypeScript will be able to infer the type of event and its element`. Quite useful for shorter/simpler functions.
+
+<details>
+<summary>Anonymous Function</summary>
+
+```ts
+// App.tsx
+import React from 'react';
+import Checkbox from './Checkbox'
+
+function App() {
+
+  return (
+    <>
+      <Checkbox label="Terms and Conditions" />
+    </>
+  )
+}
+
+export default App
+```
+
+```ts
+// Checkbox.tsx
+import React, { useState } from 'react'
+
+const Checkbox = ({ label }: { label: string }) => {
+
+  const [value, setValue] = useState(false)
+
+  return (
+    <label htmlFor="" style={{
+      borderBottom: value ? "2px solid green" : "2px solid red"
+    }}>
+
+      //typescript will infer and know its type and element
+      <input type="checkbox" checked={value} onChange={({ currentTarget }) => setValue(currentTarget.checked)}/>
+      {label}
+    </label>
+  )
+}
+
+export default Checkbox
+```
+
+</details>
+
