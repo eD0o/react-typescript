@@ -99,3 +99,43 @@ export defaultButton;
 ```
 
 </details>
+
+## 3.2 - useEffect
+
+There's `NO need to declare any special type in useEffect`, it is a hook that `receives a function` (function activated in the effect) `that returns a function` (function activated when the component is "dismounted"). It `can't be async neither`.
+
+```ts
+// App.tsx
+import React, { useEffect } from 'react';
+
+function App() {
+
+
+  // useEffect(() => {
+  //   console.log('mounted');
+
+  //   return () => {
+  //     console.log('dismounted');
+  //   }
+  // }, [])
+
+  //it's the same thing as the first commented example, a ready function that will used with some effect
+  const useEffectCallback = () => {
+    console.log('mounted');
+
+    return () => {
+      console.log('dismounted');
+    }
+  }
+
+  useEffect(useEffectCallback, [])
+
+  return (
+    <>
+      <p>see console.log</p>
+    </>
+  )
+}
+
+export default App
+```

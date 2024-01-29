@@ -1,36 +1,30 @@
-import React, { useEffect, useState } from 'react';
-import Button from './Button';
-
-function user() {
-  return {
-    name: 'Eduardo',
-    profession: 'Developer'
-  }
-}
-
-type User = {
-  name: string;
-  profession: string;
-}
+import React, { useEffect } from 'react';
 
 function App() {
 
-  const [data, setData] = useState<null | User>(null);
-  const [total, setTotal] = useState(0)
 
-  useEffect(() => {
-    setTimeout(() => {
-      setData(user())
-    }, 1000)
-  }, [])
+  // useEffect(() => {
+  //   console.log('mounted');
+
+  //   return () => {
+  //     console.log('dismounted');
+  //   }
+  // }, [])
+
+  //it's the same thing as the first commented example
+  const useEffectCallback = () => {
+    console.log('mounted');
+
+    return () => {
+      console.log('dismounted');
+    }
+  }
+
+  useEffect(useEffectCallback, [])
 
   return (
     <>
-      <div>
-        <p>Total: {total}</p>
-        <Button increment={setTotal} />
-      </div>
-      {data !== null && <div>{data.name}: {data.profession}</div>}
+      <p>see console.log</p>
     </>
   )
 }
