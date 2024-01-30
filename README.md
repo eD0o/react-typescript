@@ -104,6 +104,9 @@ export defaultButton;
 
 There's `NO need to declare any special type in useEffect`, it is a hook that `receives a function` (function activated in the effect) `that returns a function` (function activated when the component is "dismounted"). It `can't be async neither`.
 
+<details>
+<summary>useEffect callback example</summary>
+
 ```ts
 // App.tsx
 import React, { useEffect } from 'react';
@@ -139,3 +142,46 @@ function App() {
 
 export default App
 ```
+
+</details>
+
+## 3.3 - useRef
+
+It's necessary to `declare the element type of **useRef<Element>** when used to manipulate objects`.
+
+`To see the type of the Element, just hover it` and see what is showed. In this case it was <HTMLVideoElement>.
+
+![](https://i.imgur.com/OKIRkE4.png)
+
+<details>
+<summary>useRef video example</summary>
+
+```ts
+// App.tsx
+import React, { useEffect, useRef } from 'react';
+import videoSrc from './video.mp4';
+
+function App() {
+
+  const video = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    console.log(video.current);
+  }, [])
+
+  return (
+    <>
+      <div className='flex'>
+        <button onClick={() => video.current?.play()}>Play</button>
+        <button onClick={() => video.current?.pause()}>Pause</button>
+      </div>
+      <video controls ref={video} src={videoSrc}></video>
+    </>
+  )
+}
+
+export default App
+```
+
+</details>
+
