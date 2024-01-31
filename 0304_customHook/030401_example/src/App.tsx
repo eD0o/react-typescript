@@ -1,55 +1,28 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import videoSrc from './video.mp4';
+import useLocalStorage from './useLocalStorage';
 
 function App() {
 
-  const [isPlaying, setIsPlaying] = useState(false)
   const video = useRef<HTMLVideoElement>(null);
 
-  const goForward = () => {
-    if (!video.current) return
-    video.current.currentTime += 2
-  }
-
-  const changePlayBackRate = (speed: number) => {
-    if (!video.current) return
-    video.current.playbackRate = speed
-  }
-
-  const mute = () => {
-    if (!video.current) return
-    video.current.muted = !video.current.muted
-  }
-
-  const pictureInPicture = async () => {
-    if (!video.current) return
-    if (document.pictureInPictureElement) {
-      await document.exitPictureInPicture()
-    }
-    else {
-      await video.current.requestPictureInPicture();
-    }
-  }
+  const [volume, setVolume] = useLocalStorage('volume', '0')
 
   useEffect(() => {
-    console.log(video);
-  }, [video])
+    if (!video.current) return;
+    const n = Number(volume);
+    if (n >= 0 && n <= 1) video.current.volume = n;
+  }, [volume])
 
   return (
     <>
+      {volume}
       <div className='flex'>
-        {isPlaying ? (
-          <button onClick={() => video.current?.pause()}>Pause</button>
-        ) : (
-          <button onClick={() => video.current?.play()}>Play</button>
-        )}
-        <button onClick={goForward}>+2s</button>
-        <button onClick={() => changePlayBackRate(1)}>1x</button>
-        <button onClick={() => changePlayBackRate(2)}>2x</button>
-        <button onClick={pictureInPicture}>PiP</button>
-        <button onClick={mute}>M</button>
+        <button onClick={() => setVolume("0")}>0</button>
+        <button onClick={() => setVolume("0.5")}>50</button>
+        <button onClick={() => setVolume("1")}>100</button>
       </div>
-      <video controls ref={video} src={videoSrc} onPlay={() => setIsPlaying(true)} onPause={() => setIsPlaying(false)}></video>
+      <video controls ref={video} src={videoSrc}></video>
     </>
   )
 }
