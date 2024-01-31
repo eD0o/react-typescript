@@ -12,7 +12,7 @@ type Product = {
 
 function App() {
   
-  // const products = useFetch<Product[]>("https://data.origamid.dev/produtos/")
+  const products = useFetch<Product[]>("https://data.origamid.dev/produtos/")
 
   return (
     <>

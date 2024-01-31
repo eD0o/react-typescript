@@ -1,12 +1,44 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 // ?: is because is an optional parameter
 function useFetch<T>(url: RequestInfo | URL, options?: RequestInit) {
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
-  fetch
+  const optionsRef = React.useRef(options);
+
+  optionsRef.current = options
+
+  useEffect(() => {
+
+    const controller = new AbortController();
+    const { signal } = controller;
+
+    const fetchData = async () => {
+      setLoading(true)
+      setData(null)
+      try {
+        const response = await fetch(url, {
+          signal,
+          ...optionsRef.current
+        });
+        if (!response.ok) throw new Error(`Error: ${response.status}`)
+        const json = await response.json() as T;
+        if (!signal.aborted) setData(json)
+        console.log(response);
+      } catch (error) {
+        if (!signal.aborted && error instanceof Error) setError(error.message)
+      } finally {
+        if (!signal.aborted) setLoading(false)
+      }
+    }
+    fetchData()
+
+    return () => {
+      controller.abort()
+    }
+  }, [url])
 
   return { data, loading, error }
 
