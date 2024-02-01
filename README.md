@@ -250,3 +250,7 @@ export default useLocalStorage;
 ```
 
 </details>
+
+## 3.6 - useContext
+
+`Define the context interface and pass it in the createContext generic` React.createContext<IUiContext | null>(null).
