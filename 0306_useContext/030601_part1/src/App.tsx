@@ -1,11 +1,15 @@
 import React from 'react';
+import { UiContextProvider } from './UiContext';
+import Header from './Header';
+import Content from './Content';
 
 function App() {
 
   return (
-    <>
-      <p>tsx content</p>
-    </>
+    <UiContextProvider>
+      <Header />
+      <Content />
+    </UiContextProvider>
   )
 }
 

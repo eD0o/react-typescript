@@ -254,3 +254,96 @@ export default useLocalStorage;
 ## 3.6 - useContext
 
 `Define the context interface and pass it in the createContext generic` React.createContext<IUiContext | null>(null).
+
+<details>
+<summary>useLocalStorage example</summary>
+
+```ts
+// App.tsx
+import React from "react";
+import { UiContextProvider } from "./UiContext";
+import Header from "./Header";
+import Content from "./Content";
+
+function App() {
+  return (
+    <UiContextProvider>
+      <Header />
+      <Content />
+    </UiContextProvider>
+  );
+}
+
+export default App;
+```
+
+```ts
+// UiContext.tsx
+import React, { PropsWithChildren, useContext, useState } from "react";
+
+// context interface
+type IUiContext = {
+  dark: boolean;
+  setDark: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+// a way to force typescript to firstly define null in the Context if necessary
+// const UiContext = React.createContext<IUiContext>({} as IUiContext);
+
+// using the generics created from the interface above
+export const UiContext = React.createContext<IUiContext | null>(null);
+
+// but this function is necessary in the way to avoid errors if the provider is not declared in the App.tsx
+export const useUi = () => {
+  const context = useContext(UiContext);
+
+  if (context === null)
+    throw new Error("useContext must be inside the Provider");
+  return context;
+};
+
+// using PropsWithChildren to receive the children from the provider in the app.tsx and
+// let them use the props
+export const UiContextProvider = ({ children }: PropsWithChildren) => {
+  const [dark, setDark] = useState(false);
+
+  return (
+    <UiContext.Provider value={{ dark, setDark }}>
+      {children}
+    </UiContext.Provider>
+  );
+};
+```
+
+```ts
+// Header.tsx
+import React, { useContext } from "react";
+import { useUi } from "./UiContext";
+
+const Header = () => {
+  const { setDark } = useUi();
+
+  return <button onClick={() => setDark((d) => !d)}>Toggle</button>;
+};
+
+export default Header;
+```
+
+```ts
+// Content.tsx
+import React from "react";
+import { useUi } from "./UiContext";
+
+const Content = () => {
+  const { dark } = useUi();
+  return (
+    <>
+      <h1>{dark ? "dark" : "light"}</h1>
+    </>
+  );
+};
+
+export default Content;
+```
+
+</details>
