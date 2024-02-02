@@ -1,18 +1,16 @@
-import React from 'react'
+import React from 'react';
 
-type InputProps = React.ComponentProps<"input"> & {
-  label: string
-  marginBottom?: string
-  setState: React.Dispatch<React.SetStateAction<string>>
-}
+type InputProps = React.ComponentProps<'input'> & {
+  label: string;
+};
 
-const Input = ({ label, marginBottom, setState, ...props }: InputProps) => {
+const Input = ({ label, ...props }: InputProps) => {
   return (
-    <div style={{ marginBottom }}>
+    <div style={{ marginBottom: '1rem' }}>
       <label htmlFor={label}>{label}</label>
-      <input id={label} name={label} type="text" onChange={({ currentTarget }) => setState(currentTarget.value)} {...props} />
+      <input id={label} name={label} type="text" {...props} />
     </div>
-  )
-}
+  );
+};
 
-export default Input
+export default Input;
