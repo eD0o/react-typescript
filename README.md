@@ -348,7 +348,102 @@ export default Content;
 
 </details>
 
-## 3.6 - useReducer
+## 3.7 - useReducer
 
 With TypeScript it's possible to `define Actions as a type`, making the Reducer easier to use.
+
+<details>
+<summary>useReducer example</summary>
+
+```ts
+// App.tsx
+import React from 'react';
+import Form from './Form';
+
+function App() {
+
+  return (
+    <>
+      <h1>Form</h1>
+      <Form/>
+    </>
+  )
+}
+
+export default App
+```
+
+```ts
+// Form.tsx
+import React, { useReducer } from 'react'
+import Input from './Input'
+
+type State = {
+  name: string,
+  email: string
+}
+
+// type Action = {
+//   type: 'setName' | 'setEmail',
+//   payload: string
+// }
+
+//defining the interface as that will help to add new others reducers with different payloads
+type Action =
+  | { type: 'setName'; payload: string }
+  | { type: 'setEmail'; payload: string }
+
+function reducer(state: State, action: Action) {
+  switch (action.type) {
+    case 'setName':
+      return {
+        ...state,
+        name: action.payload
+      };
+    case 'setEmail':
+      return {
+        ...state,
+        email: action.payload
+      };
+    default:
+      return state
+  }
+}
+
+const Form = () => {
+
+  const [state, dispatch] = useReducer(reducer, { name: '', email: '' });
+
+  return (
+    <>
+      <Input label={`Name: ${state.name}`} value={state.name} onChange={({ target }) => dispatch({ type: 'setName', payload: target.value })} />
+      <Input label={`Email: ${state.email}`} value={state.email} onChange={({ target }) => dispatch({ type: 'setEmail', payload: target.value })} />
+    </>
+  )
+}
+
+export default Form
+```
+
+```ts
+// Input.tsx
+import React from 'react';
+
+type InputProps = React.ComponentProps<'input'> & {
+  label: string;
+};
+
+const Input = ({ label, ...props }: InputProps) => {
+  return (
+    <div style={{ marginBottom: '1rem' }}>
+      <label htmlFor={label}>{label}</label>
+      <input id={label} name={label} type="text" {...props} />
+    </div>
+  );
+};
+
+export default Input;
+```
+
+</details>
 
