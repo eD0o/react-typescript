@@ -347,3 +347,8 @@ export default Content;
 ```
 
 </details>
+
+## 3.6 - useReducer
+
+With TypeScript it's possible to `define Actions as a type`, making the Reducer easier to use.
+
