@@ -1,10 +1,18 @@
 import React from 'react';
+import Summary from './Pages/Summary';
+import Sidenav from './Components/Sidenav';
+import Header from './Components/Header';
+import "./style.scss";
 
 function App() {
 
   return (
     <>
-      <p>tsx content</p>
+      <Sidenav />
+      <main>
+        <Header />
+        <Summary />
+      </main>
     </>
   )
 }
