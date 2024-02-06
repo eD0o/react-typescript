@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import DateInput from './DateInput'
 import { useData } from '../Context/DataContext'
 
@@ -8,8 +7,8 @@ const DateRange = () => {
 
   return (
     <form onSubmit={(e) => e.preventDefault} className="box flex">
-      <DateInput label="Start" value={start} onChange={({ target }) => setStart(target.value)} />{start}
-      <DateInput label="End" value={end} onChange={({ target }) => setEnd(target.value)} />{end}
+      <DateInput label="Start" value={start} onChange={({ target }) => setStart(target.value)} />
+      <DateInput label="End" value={end} onChange={({ target }) => setEnd(target.value)} />
     </form>
   )
 }
