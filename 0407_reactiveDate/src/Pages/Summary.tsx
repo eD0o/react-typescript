@@ -7,7 +7,6 @@ const Summary = () => {
 
   console.log(data);
   
-
   return (
     <div>Summary</div>
   )
