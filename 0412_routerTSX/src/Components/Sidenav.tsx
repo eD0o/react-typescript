@@ -7,6 +7,7 @@ import settings from '../assets/icons/configuracoes.svg';
 import contact from '../assets/icons/contato.svg';
 import logout from '../assets/icons/sair.svg';
 import FintechSVG from '../assets/FintechSVG';
+import { NavLink } from 'react-router-dom';
 
 const Sidenav = () => {
   return (
@@ -15,11 +16,11 @@ const Sidenav = () => {
       <ul>
         <li>
           <span><img src={summary} alt="" /></span>
-          <a href="">Summary</a>
+          <NavLink to="/">Summary</NavLink>
         </li>
         <li>
           <span><img src={sales} alt="" /></span>
-          <a href="">Sales</a>
+          <NavLink to="/sales">Sales</NavLink>
         </li>
         <li>
           <span><img src={webhooks} alt="" /></span>
