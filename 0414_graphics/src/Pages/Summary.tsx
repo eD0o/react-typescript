@@ -1,10 +1,9 @@
+import GraphicSales from '../Components/GraphicSales';
 import { useData } from '../Context/DataContext';
 
 const Summary = () => {
 
   const { data } = useData();
-
-
 
   if (data === null) return null
 
@@ -30,7 +29,9 @@ const Summary = () => {
           </p>
         </div>
       </div>
-      <div className="box mb">Graphics</div>
+      <div className="box mb">
+        <GraphicSales data={data}/>
+      </div>
     </section>
   )
 }
